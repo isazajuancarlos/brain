@@ -1,0 +1,50 @@
+# =============================================================================
+# SECRETOS — nunca versionar (llaves OKX/Binance en vivo, dinero real)
+# =============================================================================
+.env
+.env.*
+!.env.example
+
+# =============================================================================
+# DATOS Y ESTADO — grandes y regenerables, no son fuente
+# =============================================================================
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.pid
+logs/
+*.log
+
+# Modelo entrenado: artefacto binario, lo regenera entrenar.py
+*.joblib
+
+# =============================================================================
+# VOLCADOS DE SESIÓN Y MEMORIA DE AGENTE — no son código del bot
+# =============================================================================
+conversaciones/
+.remember/
+.claude/
+
+# =============================================================================
+# BACKUPS Y TEMPORALES
+# =============================================================================
+*.bak
+*.tmp
+*.orig
+
+# =============================================================================
+# PYTHON
+# =============================================================================
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.venv/
+venv/
+
+# Caché de datos de mercado del banco de medición (público, descartable)
+.cache_lab/

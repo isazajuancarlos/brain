@@ -1,0 +1,10 @@
+ccxt
+python-dotenv
+numpy
+pandas
+pandas-ta
+xgboost
+scikit-learn
+joblib
+rich
+pytest

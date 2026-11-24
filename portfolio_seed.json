@@ -1,0 +1,8 @@
+{
+  "_comentario": "EJEMPLO de seed de avg_cost para posiciones preexistentes. Formato: {venue: {sym: {avg_cost, qty, inv}}}. Leído por sincronizar_*_arranque: si la cripto está aquí se usa este avg_cost (la qty real viene del exchange); si no está, se adopta con avg=precio_actual (PnL=0). VALORES DE EJEMPLO — reemplazar por los propios antes de desplegar.",
+  "okx": {
+    "BTC/USDT": {"avg_cost": 60000.0, "qty": 0.01000000, "inv": 600.0},
+    "ETH/USDT": {"avg_cost": 3000.0,  "qty": 0.20000000, "inv": 600.0}
+  },
+  "binance": {}
+}

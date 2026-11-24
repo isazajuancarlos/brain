@@ -1,0 +1,34 @@
+[Unit]
+Description=Colector de microflujo OKX (publico, sin capital) — Etapa 1 del santo grial
+Documentation=file:/opt/microflujo/colector_microflujo.md
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=microflujo
+Group=microflujo
+WorkingDirectory=/opt/microflujo
+ExecStart=/opt/microflujo/venv/bin/python -u colector_microflujo.py
+
+# Reinicio resiliente: si el proceso cae (red, ws, OOM) systemd lo revive.
+# El colector es tolerante a huecos (ccxt.pro reconecta), asi que un restart
+# solo pierde, a lo sumo, la barra de 1m en curso por simbolo.
+Restart=always
+RestartSec=10
+
+# Apagado LIMPIO: enviamos SIGINT (no SIGTERM) para que el bloque finally de
+# _correr() vuelque las barras del minuto en curso antes de salir. Igual que Ctrl+C.
+KillSignal=SIGINT
+TimeoutStopSec=20
+
+# Endurecimiento: el colector es publico/sin-auth y SOLO escribe su propia DB.
+# Sin esto no perderia nada, pero deja explicito que no puede tocar el resto del FS.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/microflujo
+
+[Install]
+WantedBy=multi-user.target
